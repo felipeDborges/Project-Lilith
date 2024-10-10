@@ -1,61 +1,18 @@
 from tkinter import *
-import tkinter as tk
+from estilo import limpar_frame, adicionar_texto, criar_botoes, imagem_de_fundo, criar_interface, janela, frame_rolavel
 import pygame
 from pygame import mixer
-from PIL import ImageTk, Image
-import estilo
+import tkinter as tk
 
 bloquearSantiago = False
 cameraCasa = False
 
-def limpar_frame(frame):
-    for widget in frame.winfo_children():
-        widget.destroy()
+def inicio():
+    #Nova de fundo
+    label_imagem = imagem_de_fundo(janela, 'img/Inicio_Sonho.jpg')
 
-def adicionar_texto(frame, texto, fonte_tamanho=11, cor_texto='#ADD8E6', cor_fundo='black'):
-    novo_texto = tk.Label(frame, text=texto, wraplength=1000, 
-                          fg=cor_texto, bg=cor_fundo, font=('Space Mono', fonte_tamanho, 'italic'),
-                          anchor='center')
-    novo_texto.pack(pady=10)
-    return novo_texto
-
-def criar_botoes(opcoes):
-
-    for opcao in opcoes:
-        botao = tk.Button(frame_rolavel, text=opcao['texto'], bg='#4682B4', fg='#ADD8E6', 
-                            font=('Space Mono', 9, 'italic'), command=opcao['comando'])
-        botao.pack(pady=20, anchor='center')
-
-def criar_interface():
-    global janela, label_imagem, canvas, frame_rolavel, imagem_tk, inicio_narrador
-
-    janela = tk.Tk()
-    janela.title("Project Lilith")    
-    janela.geometry("1280x720")
-    janela.configure(bg='black')
-  
-    #Imagem de fundo
-    imagem = Image.open('img/Inicio_Sonho.jpg')
-    nova_imagem = imagem.resize((720, 480))
-    imagem_tk = ImageTk.PhotoImage(nova_imagem)
-    label_imagem = tk.Label(janela, image=imagem_tk)
-    label_imagem.pack()
-
-    # Canvas para Scroll
-    canvas = tk.Canvas(janela, bg='black', highlightthickness=0)
-    canvas.pack(side='left', fill='both', expand=True)
-
-    # Frame que será rolado dentro do Canvas
-    frame_rolavel = tk.Frame(canvas, bg='black')
-    canvas.create_window((0, 0), window=frame_rolavel, anchor='nw')
-
-    # Barra de Rolagem associada ao Canvas
-    scrollbar = tk.Scrollbar(janela, orient='vertical', command=canvas.yview)
-    canvas.configure(yscrollcommand=scrollbar.set)
-    scrollbar.pack(side='right', fill='y')
-
-    # Configurar a rolagem do Frame
-    frame_rolavel.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
+    # Limpar o frame rolável
+    limpar_frame(frame_rolavel)
 
     texto_inicial = ("Estamos no distante e distópico futuro de 2121, após os acontecimentos da Terceira Grande Guerra, "
                      "o Brasil foi um dos poucos países que não sofreram ataques devastadores em seu território. "
@@ -79,11 +36,7 @@ def criar_interface():
 
 def despertar():
     #Nova de fundo
-    imagem = Image.open('img/Quarto.jpg')
-    nova_imagem = imagem.resize((720, 480))
-    imagem_tk = ImageTk.PhotoImage(nova_imagem)
-    label_imagem.config(image=imagem_tk)
-    label_imagem.image = imagem_tk
+    label_imagem = imagem_de_fundo(janela, 'img/Quarto.jpg')
 
     # Limpar o frame rolável
     limpar_frame(frame_rolavel)
@@ -100,11 +53,7 @@ def despertar():
 
 def banheiro():
     #Nova de fundo
-    imagem = Image.open('img/Banheiro.jpg')
-    nova_imagem = imagem.resize((720, 480))
-    imagem_tk = ImageTk.PhotoImage(nova_imagem)
-    label_imagem.config(image=imagem_tk)
-    label_imagem.image = imagem_tk
+    label_imagem = imagem_de_fundo(janela, 'img/Inicio_Sonho.jpg')
 
     # Limpar o frame rolável
     limpar_frame(frame_rolavel)
@@ -126,11 +75,7 @@ def banheiro():
 
 def mensagens():
     #Nova de fundo
-    imagem = Image.open('img/Quarto.jpg')
-    nova_imagem = imagem.resize((720, 480))
-    imagem_tk = ImageTk.PhotoImage(nova_imagem)
-    label_imagem.config(image=imagem_tk)
-    label_imagem.image = imagem_tk
+    label_imagem = imagem_de_fundo(janela, 'img/Inicio_Sonho.jpg')
 
     # Limpar o frame rolável
     limpar_frame(frame_rolavel)
@@ -158,11 +103,7 @@ def bloquear_santiago():
     global bloquearSantiago
 
     #Nova de fundo
-    imagem = Image.open('img/Quarto.jpg')
-    nova_imagem = imagem.resize((720, 480))
-    imagem_tk = ImageTk.PhotoImage(nova_imagem)
-    label_imagem.config(image=imagem_tk)
-    label_imagem.image = imagem_tk
+    label_imagem = imagem_de_fundo(janela, 'img/Inicio_Sonho.jpg')
 
     # Limpar o frame rolável
     limpar_frame(frame_rolavel)
@@ -183,11 +124,7 @@ def bloquear_santiago():
 
 def mensagens_sakura():
     #Nova de fundo
-    imagem = Image.open('img/Quarto.jpg')
-    nova_imagem = imagem.resize((720, 480))
-    imagem_tk = ImageTk.PhotoImage(nova_imagem)
-    label_imagem.config(image=imagem_tk)
-    label_imagem.image = imagem_tk
+    label_imagem = imagem_de_fundo(janela, 'img/Inicio_Sonho.jpg')
 
     # Limpar o frame rolável
     limpar_frame(frame_rolavel)
@@ -204,22 +141,18 @@ def mensagens_sakura():
             {'texto': "Ver mensagens de Espinosa", 'comando': mensagens_espinoas},
             {'texto': "Bloquear Santiago", 'comando': bloquear_santiago},
             {'texto': "Levantar", 'comando': banheiro}
-    ]
+        ]
     else:
         opcoes = [
             {'texto': "Ver mensagens de Espinosa", 'comando': mensagens_espinoas},
             {'texto': "Levantar", 'comando': banheiro}
-    ]
+        ]
     
     criar_botoes(opcoes)
 
 def mensagens_espinoas():
     #Nova de fundo
-    imagem = Image.open('img/Quarto.jpg')
-    nova_imagem = imagem.resize((720, 480))
-    imagem_tk = ImageTk.PhotoImage(nova_imagem)
-    label_imagem.config(image=imagem_tk)
-    label_imagem.image = imagem_tk
+    label_imagem = imagem_de_fundo(janela, 'img/Inicio_Sonho.jpg')
 
     # Limpar o frame rolável
     limpar_frame(frame_rolavel)
@@ -235,23 +168,19 @@ def mensagens_espinoas():
             {'texto': "Ver mensagens de Sakura", 'comando': mensagens_sakura},
             {'texto': "Bloquear Santiago", 'comando': bloquear_santiago},
             {'texto': "Levantar", 'comando': banheiro}
-    ]
+        ]
     else:
         opcoes = [
             {'texto': "Ver mensagens de Sakura", 'comando': mensagens_sakura},
             {'texto': "Levantar", 'comando': banheiro}
-    ]
+        ]
     
     criar_botoes(opcoes)
 
 def camera():
     global cameraCasa
     #Nova de fundo
-    imagem = Image.open('img/Cozinha.jpg')
-    nova_imagem = imagem.resize((720, 480))
-    imagem_tk = ImageTk.PhotoImage(nova_imagem)
-    label_imagem.config(image=imagem_tk)
-    label_imagem.image = imagem_tk
+    label_imagem = imagem_de_fundo(janela, 'img/Inicio_Sonho.jpg')
 
     # Limpar o frame rolável
     limpar_frame(frame_rolavel)
@@ -275,11 +204,7 @@ def camera():
 
 def abrir_a_porta ():
     #Nova de fundo
-    imagem = Image.open('img/Cozinha.jpg')
-    nova_imagem = imagem.resize((720, 480))
-    imagem_tk = ImageTk.PhotoImage(nova_imagem)
-    label_imagem.config(image=imagem_tk)
-    label_imagem.image = imagem_tk
+    label_imagem = imagem_de_fundo(janela, 'img/Inicio_Sonho.jpg')
 
     # Limpar o frame rolável
     limpar_frame(frame_rolavel)
@@ -317,11 +242,7 @@ def abrir_a_porta ():
 
 def ignorar():
     #Nova de fundo
-    imagem = Image.open('img/Cozinha.jpg')
-    nova_imagem = imagem.resize((720, 480))
-    imagem_tk = ImageTk.PhotoImage(nova_imagem)
-    label_imagem.config(image=imagem_tk)
-    label_imagem.image = imagem_tk
+    label_imagem = imagem_de_fundo(janela, 'img/Inicio_Sonho.jpg')
 
     # Limpar o frame rolável
     limpar_frame(frame_rolavel)
@@ -341,22 +262,18 @@ def ignorar():
             {'texto': "Masticar meu serial matinal", 'comando': ignorar_mais},
             {'texto': "Abrir a porta", 'comando': abrir_a_porta},
             {'texto': "Olhar nas câmeras", 'comando': camera},
-    ]
+        ]
     else:
         opcoes = [
             {'texto': "Masticar meu serial matinal", 'comando': ignorar_mais},
             {'texto': "Abrir a porta", 'comando': abrir_a_porta_camera}
-    ]
+        ]
     
     criar_botoes(opcoes)
 
 def ignorar_mais():
     #Nova de fundo
-    imagem = Image.open('img/Cozinha.jpg')
-    nova_imagem = imagem.resize((720, 480))
-    imagem_tk = ImageTk.PhotoImage(nova_imagem)
-    label_imagem.config(image=imagem_tk)
-    label_imagem.image = imagem_tk
+    label_imagem = imagem_de_fundo(janela, 'img/Inicio_Sonho.jpg')
 
     # Limpar o frame rolável
     limpar_frame(frame_rolavel)
@@ -383,11 +300,7 @@ def ignorar_mais():
 
 def ignorar_mais_maisForte():
     #Nova de fundo
-    imagem = Image.open('img/Cozinha.jpg')
-    nova_imagem = imagem.resize((720, 480))
-    imagem_tk = ImageTk.PhotoImage(nova_imagem)
-    label_imagem.config(image=imagem_tk)
-    label_imagem.image = imagem_tk
+    label_imagem = imagem_de_fundo(janela, 'img/Inicio_Sonho.jpg')
 
     # Limpar o frame rolável
     limpar_frame(frame_rolavel)
@@ -419,11 +332,7 @@ def ignorar_mais_maisForte():
 
 def ignorando_supremo():
     #Nova de fundo
-    imagem = Image.open('img/Banheiro.jpg')
-    nova_imagem = imagem.resize((720, 480))
-    imagem_tk = ImageTk.PhotoImage(nova_imagem)
-    label_imagem.config(image=imagem_tk)
-    label_imagem.image = imagem_tk
+    label_imagem = imagem_de_fundo(janela, 'img/Inicio_Sonho.jpg')
 
     # Limpar o frame rolável
     limpar_frame(frame_rolavel)
@@ -449,11 +358,7 @@ def ignorando_supremo():
 
 def abrir_a_porta_camera(): 
     #Nova de fundo
-    imagem = Image.open('img/Cozinha.jpg')
-    nova_imagem = imagem.resize((720, 480))
-    imagem_tk = ImageTk.PhotoImage(nova_imagem)
-    label_imagem.config(image=imagem_tk)
-    label_imagem.image = imagem_tk
+    label_imagem = imagem_de_fundo(janela, 'img/Inicio_Sonho.jpg')
 
     # Limpar o frame rolável
     limpar_frame(frame_rolavel)
@@ -484,11 +389,7 @@ def abrir_a_porta_camera():
 
 def saindo ():
     #Nova de fundo
-    imagem = Image.open('img/Lojas.jpg')
-    nova_imagem = imagem.resize((720, 480))
-    imagem_tk = ImageTk.PhotoImage(nova_imagem)
-    label_imagem.config(image=imagem_tk)
-    label_imagem.image = imagem_tk
+    label_imagem = imagem_de_fundo(janela, 'img/Inicio_Sonho.jpg')
 
     # Limpar o frame rolável
     limpar_frame(frame_rolavel)
@@ -513,11 +414,7 @@ def saindo ():
 
 def localizacao ():
     #Nova de fundo
-    imagem = Image.open('img/Lojas.jpg')
-    nova_imagem = imagem.resize((720, 480))
-    imagem_tk = ImageTk.PhotoImage(nova_imagem)
-    label_imagem.config(image=imagem_tk)
-    label_imagem.image = imagem_tk
+    label_imagem = imagem_de_fundo(janela, 'img/Inicio_Sonho.jpg')
 
     # Limpar o frame rolável
     limpar_frame(frame_rolavel)
@@ -548,11 +445,7 @@ def localizacao ():
 
 def papo_furado ():
     #Nova de fundo
-    imagem = Image.open('img/Lojas.jpg')
-    nova_imagem = imagem.resize((720, 480))
-    imagem_tk = ImageTk.PhotoImage(nova_imagem)
-    label_imagem.config(image=imagem_tk)
-    label_imagem.image = imagem_tk
+    label_imagem = imagem_de_fundo(janela, 'img/Inicio_Sonho.jpg')
 
     # Limpar o frame rolável
     limpar_frame(frame_rolavel)
@@ -577,11 +470,7 @@ def papo_furado ():
 
 def jornal_dia_1 ():
     #Nova de fundo
-    imagem = Image.open('img/Lojas.jpg')
-    nova_imagem = imagem.resize((720, 480))
-    imagem_tk = ImageTk.PhotoImage(nova_imagem)
-    label_imagem.config(image=imagem_tk)
-    label_imagem.image = imagem_tk
+    label_imagem = imagem_de_fundo(janela, 'img/Inicio_Sonho.jpg')
 
     # Limpar o frame rolável
     limpar_frame(frame_rolavel)
@@ -605,5 +494,5 @@ def jornal_dia_1 ():
     criar_botoes(opcoes)
 
 #Iniciar Aplicação
-criar_interface()
+inicio()
 janela.mainloop()
