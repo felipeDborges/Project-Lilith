@@ -1,18 +1,17 @@
 from tkinter import *
-from estilo import limpar_frame, adicionar_texto, criar_botoes, imagem_de_fundo, criar_interface, janela, frame_rolavel
-import pygame
-from pygame import mixer
+from estilo import limpar_frame, adicionar_texto, criar_botoes, imagem_de_fundo, janela, frame_rolavel
 import tkinter as tk
 
 bloquearSantiago = False
 cameraCasa = False
 
+def alterar_imagem_de_fundo(caminho_imagem):
+    imagem_de_fundo(janela, caminho_imagem)
+
 def inicio():
     #Nova de fundo
-    label_imagem = imagem_de_fundo(janela, 'img/Inicio_Sonho.jpg')
-
-    # Limpar o frame rolável
-    limpar_frame(frame_rolavel)
+    
+    alterar_imagem_de_fundo('img/Inicio_Sonho.jpg')
 
     texto_inicial = ("Estamos no distante e distópico futuro de 2121, após os acontecimentos da Terceira Grande Guerra, "
                      "o Brasil foi um dos poucos países que não sofreram ataques devastadores em seu território. "
@@ -28,18 +27,12 @@ def inicio():
                 font=('Space Mono', 9, 'italic'), command=despertar)
     botao_inicial.pack(pady=20, anchor='center')
 
-    #Áudio
-    pygame.mixer.init()
-    pygame.mixer.music.load('audio/Cyberpunk.ogg')
-    mixer.music.set_volume(0.1)
-    mixer.music.play(-1)
-
 def despertar():
-    #Nova de fundo
-    label_imagem = imagem_de_fundo(janela, 'img/Quarto.jpg')
-
     # Limpar o frame rolável
     limpar_frame(frame_rolavel)
+
+    #Nova de fundo
+    alterar_imagem_de_fundo('img/Quarto.jpg')
 
     #Novo texto
     despertador = "Você acorda com seu despertador tocando, olha para a janela, porém não vê luz do sol. Com toda essa poluição, é impossível velo de qualquer maneira. Mas você sabe olhando no relógio que já são 07:00am."
