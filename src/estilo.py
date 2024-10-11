@@ -1,6 +1,8 @@
 from tkinter import *
 import tkinter as tk
 from PIL import ImageTk, Image
+import pygame
+from pygame import mixer
 
 imagem_tk_global = None
 
@@ -25,13 +27,18 @@ def criar_botoes(opcoes):
 def imagem_de_fundo(janela, caminho_imagem):
     #Imagem de fundo
     global imagem_tk_global
+    try:
+        imagem = Image.open(caminho_imagem)
+        nova_imagem = imagem.resize((720, 480))
+        imagem_tk_global = ImageTk.PhotoImage(nova_imagem)
+        # Exibe a imagem no canvas ou no frame
+        label_imagem = tk.Label(janela, image=imagem_tk_global, bg='black')
+        label_imagem.pack(fill='both', expand=True)
 
-    imagem = Image.open(caminho_imagem)
-    nova_imagem = imagem.resize((720, 480))
-    imagem_tk_global = ImageTk.PhotoImage(nova_imagem)
-    label_imagem = tk.Label(janela, image=imagem_tk_global)
-    label_imagem.pack()
-    return label_imagem
+        # Atualiza a interface para garantir que a imagem apareça
+        janela.update_idletasks()
+    except Exception as e:
+        print(f"Erro ao carregar a imagem: {e}")
 
 def criar_interface():
     global janela, canvas, frame_rolavel
@@ -43,7 +50,7 @@ def criar_interface():
 
     # Canvas para Scroll
     canvas = tk.Canvas(janela, bg='black', highlightthickness=0)
-    canvas.pack(side='left', fill='both', expand=True)
+    canvas.pack(side='bottom', fill='both', expand=True)
 
     # Frame que será rolado dentro do Canvas
     frame_rolavel = tk.Frame(canvas, bg='black')
@@ -56,6 +63,12 @@ def criar_interface():
 
     # Configurar a rolagem do Frame
     frame_rolavel.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
+
+    #Áudio
+    pygame.mixer.init()
+    pygame.mixer.music.load('audio/Cyberpunk.ogg')
+    mixer.music.set_volume(0.1)
+    mixer.music.play(-1)
     
 #Iniciar Aplicação
 criar_interface()
