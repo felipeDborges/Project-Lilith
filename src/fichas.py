@@ -32,6 +32,7 @@ pericias_delacruz = {
 
 atributos_movimento_delacruz = {
     'VIT': atributos_delacruz['TCO'] + 10,
+    'DINHEIRO': 1500,
     'Levantar': atributos_delacruz['TCO'] * 40,
     'Correr': atributos_delacruz['MOV'] * 3,
     'Saltar': (atributos_delacruz['MOV'] * 3) / 4 #Usando o valor de "Correr"
@@ -60,11 +61,10 @@ def calcular_MTC(TCO):
     else:
         return None 
 
-def alterar_imagem_de_fundo(frame, caminho_imagem):
-    imagem_de_fundo(frame, caminho_imagem)
-
 def ficha_delacruz():
     limpar_frame(frame_rolavel)
+    from chapter_2 import inicio_Capitulo2
+
 
     #Nome e Classe
     adicionar_texto(frame_rolavel, "Nome: Bruno Delacruz", fonte_tamanho=20, cor_texto= '#4682B4', row=0)
@@ -84,11 +84,12 @@ def ficha_delacruz():
     adicionar_texto(frame_rolavel, f"TCO: {atributos_movimento_delacruz['Correr']}", cor_texto='#008080', row=12)
     adicionar_texto(frame_rolavel, f"EMP: {atributos_movimento_delacruz['Saltar']}", cor_texto='#008080', row=13)
     
-    #Implantes
+    #Implantes e Dinheiro
     adicionar_texto(frame_rolavel, "Implantes:", fonte_tamanho=17, cor_texto='#ADD8E6', row=15)
     adicionar_texto(frame_rolavel, "Braço De Reposição Direito", cor_texto='#008080', row=16)
     adicionar_texto(frame_rolavel, "Blindagem (PB 20)", cor_texto='#008080', row=17)
     adicionar_texto(frame_rolavel, "Soqueira de Aço(1D6+2)", cor_texto='#008080', row=18)
+    adicionar_texto(frame_rolavel, f"Dinheiro: {atributos_movimento_delacruz['DINHEIRO']}", cor_texto='Yellow', row=19)
 
     #Habilidade Especial
     adicionar_texto(frame_rolavel, "Habilidade Especial", fonte_tamanho=17, cor_texto='#ADD8E6', row=1, column=1)
@@ -122,9 +123,8 @@ def ficha_delacruz():
 
 
     #Botão
-    botao_inicial = tk.Button(frame_rolavel, text="Ver Inventario", bg='#4682B4', fg='#ADD8E6', 
-                font=('Space Mono', 9, 'italic'), command=ficha_delacruz)
-    botao_inicial.grid(row=20, column=1, padx=10, pady=10)
-
-ficha_delacruz()
-janela.mainloop()
+    opcoes = [
+            {'texto': "Ficha do Delacruz", 'comando': ficha_delacruz, 'row':20, 'column':1},
+            {'texto': "Voltar", 'comando': inicio_Capitulo2, 'row':20, 'column':2}
+    ]
+    criar_botoes(opcoes, linha_inicial=1)

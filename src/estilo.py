@@ -61,14 +61,22 @@ def adicionar_texto(frame, texto, row, column=0, fonte_tamanho=11, cor_texto='#A
     frame.grid_columnconfigure(column, weight=1)
     return novo_texto
 
-def criar_botoes(opcoes, linha_inicial):
+def criar_botoes(opcoes, linha_inicial, column=0):
     linha = linha_inicial
 
     for opcao in opcoes:
-        botao = tk.Button(frame_rolavel, text=opcao['texto'], bg='#4682B4', fg='#ADD8E6', 
+        cor_fundo = opcao.get('bg', '#4682B4')  # Cor de fundo padrão
+        cor_texto = opcao.get('fg', '#ADD8E6')  # Cor do texto padrão
+
+        botao = tk.Button(frame_rolavel, text=opcao['texto'], bg=cor_fundo, fg=cor_texto, 
                             font=('Space Mono', 9, 'italic'), command=opcao['comando'])
-        botao.grid(row=linha + 1, column=0, padx=10, pady=10)
-        linha += 2
+        
+        linha_inicial = opcao.get('row', linha)
+        coluna_botao = opcao.get('column', column)
+
+        botao.grid(row=linha_inicial, column=coluna_botao, padx=10, pady=10)
+        if 'row' not in opcao:
+            linha += 2
 
    
 #Iniciar Aplicação

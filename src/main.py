@@ -26,9 +26,13 @@ def inicio():
     adicionar_texto(frame_rolavel, texto_inicial, row=1)
 
     #Botão
-    botao_inicial = tk.Button(frame_rolavel, text="Acordar", bg='#4682B4', fg='#ADD8E6', 
-                font=('Space Mono', 9, 'italic'), command=despertar)
-    botao_inicial.grid(row=2, column=0, padx=10, pady=10)
+    opcoes = [
+            {'texto': "Acordar", 'comando': despertar},
+            {'texto': "Carregar Jogo", 'comando': lambda: carregar_jogo(atributos_movimento_delacruz)},
+            {'texto': "Excluir Save", 'comando': excluir_save, 'fg':'black', 'bg':'red'}
+    ]
+    linha_inicial = 2
+    criar_botoes(opcoes, linha_inicial)
 
 def despertar():
     # Limpar o frame rolável
@@ -46,7 +50,7 @@ def despertar():
         {'texto': "Ver suas mensagens", 'comando': mensagens}
     ]
 
-    linha_inicial = 1
+    linha_inicial = 2
 
     criar_botoes(opcoes, linha_inicial)
 
@@ -70,7 +74,7 @@ def banheiro():
         {'texto': "Abrir a porta", 'comando': abrir_a_porta},
         {'texto': "Ignorar", 'comando': ignorar}
     ]
-    linha_inicial = 2
+    linha_inicial = 3
 
     criar_botoes(opcoes, linha_inicial)
 
@@ -98,7 +102,7 @@ def mensagens():
         {'texto': "Bloquear Santiago", 'comando': bloquear_santiago},
         {'texto': "Levantar", 'comando': banheiro}
     ]
-    linha_inicial = 3
+    linha_inicial = 4
 
     criar_botoes(opcoes, linha_inicial)
 
@@ -123,7 +127,7 @@ def bloquear_santiago():
         {'texto': "Ver mensagens de Espinosa", 'comando': mensagens_espinoas},
         {'texto': "Levantar", 'comando': banheiro}
     ]
-    linha_inicial = 1
+    linha_inicial = 2
 
     criar_botoes(opcoes, linha_inicial)
 
@@ -152,7 +156,7 @@ def mensagens_sakura():
             {'texto': "Ver mensagens de Espinosa", 'comando': mensagens_espinoas},
             {'texto': "Levantar", 'comando': banheiro}
         ]
-    linha_inicial = 2
+    linha_inicial = 3
 
     criar_botoes(opcoes, linha_inicial)
 
@@ -180,7 +184,7 @@ def mensagens_espinoas():
             {'texto': "Ver mensagens de Sakura", 'comando': mensagens_sakura},
             {'texto': "Levantar", 'comando': banheiro}
         ]
-    linha_inicial = 2
+    linha_inicial = 3
 
     criar_botoes(opcoes, linha_inicial)
 
@@ -206,7 +210,7 @@ def camera():
             {'texto': "Atender a porta", 'comando': abrir_a_porta_camera},
             {'texto': "Ignorar", 'comando': ignorar}
     ]
-    linha_inicial = 1
+    linha_inicial = 2
 
     criar_botoes(opcoes, linha_inicial)
 
@@ -245,7 +249,7 @@ def abrir_a_porta ():
     opcoes = [
             {'texto': "Ir para fora", 'comando': saindo}
     ]
-    linha_inicial = 8
+    linha_inicial = 9
 
     criar_botoes(opcoes, linha_inicial)
 
@@ -277,7 +281,7 @@ def ignorar():
             {'texto': "Masticar meu serial matinal", 'comando': ignorar_mais},
             {'texto': "Abrir a porta", 'comando': abrir_a_porta_camera}
         ]
-    linha_inicial = 3
+    linha_inicial = 4
 
     criar_botoes(opcoes, linha_inicial)
 
@@ -305,7 +309,7 @@ def ignorar_mais():
             {'texto': "Mastigar MAIS ALTO serial matinal", 'comando': ignorar_mais_maisForte},
             {'texto': "Abrir a porta", 'comando': abrir_a_porta_camera}
     ]
-    linha_inicial = 2
+    linha_inicial = 3
 
     criar_botoes(opcoes, linha_inicial)
 
@@ -338,7 +342,7 @@ def ignorar_mais_maisForte():
             {'texto': "Ir comer no banheiro", 'comando': ignorando_supremo},
             {'texto': "Abrir a porta", 'comando': abrir_a_porta_camera}
     ]
-    linha_inicial = 4
+    linha_inicial = 5
 
     criar_botoes(opcoes, linha_inicial)
 
@@ -365,7 +369,7 @@ def ignorando_supremo():
         opcoes = [
             {'texto': "Abrir a porta", 'comando': abrir_a_porta_camera}
     ]
-    linha_inicial = 2
+    linha_inicial = 3
 
     criar_botoes(opcoes, linha_inicial)
 
@@ -397,7 +401,7 @@ def abrir_a_porta_camera():
     opcoes = [
             {'texto': "Ir para fora", 'comando': saindo}
     ]
-    linha_inicial = 7
+    linha_inicial = 8
 
     criar_botoes(opcoes, linha_inicial)
 
@@ -423,7 +427,7 @@ def saindo ():
             {'texto': "Falar sobre a missão", 'comando': papo_furado},
             {'texto': "Ler Jornal", 'comando': jornal_dia_1},
     ]
-    linha_inicial = 3
+    linha_inicial = 4
 
     criar_botoes(opcoes, linha_inicial)
 
@@ -455,7 +459,7 @@ def localizacao ():
             {'texto': "Falar sobre a missão", 'comando': papo_furado},
             {'texto': "Ler Jornal", 'comando': jornal_dia_1},
     ]
-    linha_inicial = 8
+    linha_inicial = 9
 
     criar_botoes(opcoes, linha_inicial)
 
@@ -481,7 +485,7 @@ def papo_furado ():
             {'texto': "Perguntar a onde fica Pinto Seco", 'comando': localizacao},
             {'texto': "Ler Jornal", 'comando': jornal_dia_1},
     ]
-    linha_inicial = 5
+    linha_inicial = 6
 
     criar_botoes(opcoes, linha_inicial)
 
@@ -507,7 +511,7 @@ def jornal_dia_1 ():
     opcoes = [
             {'texto': "Fim do Capítulo", 'comando': inicio_Capitulo2},
     ]
-    linha_inicial = 4
+    linha_inicial = 5
 
     criar_botoes(opcoes, linha_inicial)
 

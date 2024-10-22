@@ -5,7 +5,7 @@ a = Analysis(
     ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[('C:\\Users\\47551522832\\OneDrive - PRODESP\\Documentos\\Projeto Lilith Python\\audio', 'audio'), ('C:\\Users\\47551522832\\OneDrive - PRODESP\\Documentos\\Projeto Lilith Python\\img', 'img')],
+    datas=[],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
