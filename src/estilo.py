@@ -53,12 +53,12 @@ def imagem_de_fundo(frame, caminho_imagem):
     label_imagem = tk.Label(frame, image=imagem_tk_global, bg='black')
     label_imagem.grid(row=0, column=0, sticky='nsew')
 
-def adicionar_texto(frame, texto, row, fonte_tamanho=11, cor_texto='#ADD8E6', cor_fundo='black'):
+def adicionar_texto(frame, texto, row, column=0, fonte_tamanho=11, cor_texto='#ADD8E6', cor_fundo='black'):
     novo_texto = tk.Label(frame, text=texto, wraplength=1000, justify='center' ,
                           fg=cor_texto, bg=cor_fundo, font=('Space Mono', fonte_tamanho, 'italic'),
                           anchor='center')
-    novo_texto.grid(column=0, row=row, sticky='nsew')
-    frame.grid_columnconfigure(0,weight=1)
+    novo_texto.grid(column=column, row=row, sticky='nsew')
+    frame.grid_columnconfigure(column, weight=1)
     return novo_texto
 
 def criar_botoes(opcoes, linha_inicial):

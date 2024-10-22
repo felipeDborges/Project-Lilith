@@ -49,5 +49,4 @@ def Entrada():
 
 
 inicio_Capitulo2()
-janela.mainloop()
 
