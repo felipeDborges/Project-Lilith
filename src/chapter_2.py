@@ -27,7 +27,7 @@ def inicio_Capitulo2(dados_jogo=None):
     opcoes = [
             {'texto': "Ficha do Delacruz", 'comando': ficha_delacruz},
             {'texto': "Descer do Carro", 'comando': None},
-            {'texto': "Salvar Jogo", 'comando': lambda: salvar_jogo(atributos_movimento_delacruz, 'inicio_Capitulo2')},  
+            {'texto': "Salvaaaaaaaar Jogo", 'comando': lambda: salvar_jogo(atributos_movimento_delacruz, 'inicio_Capitulo2')},  
             {'texto': "Carregar Jogo", 'comando': lambda: carregar_jogo(atributos_movimento_delacruz)},
             {'texto': "Excluir Save", 'comando': excluir_save, 'fg':'black', 'bg':'red'}
     ]
