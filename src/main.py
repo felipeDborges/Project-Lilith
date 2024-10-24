@@ -468,7 +468,7 @@ def papo_furado ():
     limpar_frame(frame_rolavel)
 
     #Nova de fundo
-    alterar_imagem_de_fundo(frame_rolavel, 'img/Lojas.jpg')
+    alterar_imagem_de_fundo(frame_rolavel, 'img/Trafego_Aereo.jpg')
 
     #Novo texto
     adicionar_texto(frame_rolavel, "'Tem alguma ideia do que pode ser essa missão?'", fonte_tamanho=11, cor_texto='#4682B4', row=1)
@@ -494,7 +494,7 @@ def jornal_dia_1 ():
     limpar_frame(frame_rolavel)
 
     #Nova de fundo
-    alterar_imagem_de_fundo(frame_rolavel, 'img/Lojas.jpg')
+    alterar_imagem_de_fundo(frame_rolavel, 'img/Trafego_Aereo.jpg')
 
     #Novo texto
     adicionar_texto(frame_rolavel, "Quinta-feira, 17 de abril de 2121", fonte_tamanho=13, cor_texto='#ade6da', row=1)
@@ -517,4 +517,3 @@ def jornal_dia_1 ():
 
 #Iniciar Aplicação
 inicio()
-janela.mainloop()

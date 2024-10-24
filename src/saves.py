@@ -7,19 +7,19 @@ def salvar_jogo(atributos_movimento_delacruz, capitulo_atual, texto_atual, image
         "dados_jogo": {
             "VIT": atributos_movimento_delacruz['VIT'],
             "DINHEIRO": atributos_movimento_delacruz['DINHEIRO'],
-            "texto_atual": "Você esta com sua parceira androide e seu cachorro robo Salsicha, vocês chegaram ao ponto de encontro que o Espinosa marcou, o Pinto Seco.",
-            "imagem_fundo": "img/Capitulo_2.jpg" 
+            "texto_atual": texto_atual,
+            "imagem_fundo": imagem_fundo 
         }
     }
     
-    with open('save.json', 'w') as f:
+    with open('jogo_save.json', 'w') as f:
         json.dump(estado_jogo, f)
     print("Jogo salvo com sucesso!")
 
 def carregar_jogo(atributos_movimento_delacruz):
     from chapter_2 import inicio_Capitulo2
     try:
-        with open('save.json', 'r') as f:
+        with open('jogo_save.json', 'r') as f:
             estado = json.load(f)
 
         atributos_movimento_delacruz['VIT'] = estado['dados_jogo']['VIT']
