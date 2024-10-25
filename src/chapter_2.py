@@ -134,7 +134,7 @@ def Missao():
 
     adicionar_texto(frame_rolavel, "'Não seria mais fácil ele simplesmente... participar do leilão?'", fonte_tamanho=11, cor_texto='#4bb446', row=7)
 
-    adicionar_texto(frame_rolavel, "\nSantiago toma um gole do seu whisky que estava em cima da mesa.\n", fonte_tamanho=11, row=8)
+    adicionar_texto(frame_rolavel, "\nEspinosa toma um gole do seu whisky que estava em cima da mesa.\n", fonte_tamanho=11, row=8)
 
     adicionar_texto(frame_rolavel, "'Os motivos para o nosso cliente nos contratar não nos interessam, mas posso garantir para vocês que, se essa tecnologia for tudo o que dizem,"
                     " um milhão seria apenas o valor inicial do leilão.'", fonte_tamanho=11, cor_texto='#b266b2', row=9)  
@@ -147,6 +147,12 @@ def Missao():
     linha_inicial = 10
     criar_botoes(opcoes, linha_inicial)
 
-
 inicio_Capitulo2()
 janela.mainloop()
+
+
+# Delacruz #4682B4
+# Yamaha #4bb446
+# Sakura #B22222
+# Rocha #d9ade6
+# Espinosa #b266b2

@@ -7,36 +7,54 @@ from pygame import mixer
 imagem_tk_global = None
 
 def criar_interface():
-    global janela, canvas, frame_rolavel
+    global janela, canvas, frame_rolavel, window_id
 
     janela = tk.Tk()
     janela.title("Project Lilith")    
     janela.geometry("1280x720")
     janela.configure(bg='black')
 
-    # Criação do Canvas
+    #Criação do Canvas
     canvas = tk.Canvas(janela, bg='black')
     canvas.pack(side='left', fill='both', expand=True)
 
-    # Criação da barra de rolagem
+    #Criação da barra de rolagem
     scrollbar = tk.Scrollbar(janela, orient='vertical', command=canvas.yview)
     scrollbar.pack(side='right', fill='y')
 
-    # Criação do Frame que será rolado dentro do Canvas
-    frame_rolavel = tk.Frame(canvas, bg='black')
-    canvas.create_window((0, 0), window=frame_rolavel, anchor='nw')
+    #Criação do Frame que será rolado dentro do Canvas
+    frame_rolavel = tk.Frame(canvas, bg='black', width=300, height=200)  # Define um tamanho fixo inicial para centralização
+    window_id = canvas.create_window((0, 0), window=frame_rolavel, anchor='nw')
 
-    # Configuração do Canvas para usar a barra de rolagem
+    #Configuração do Canvas para usar a barra de rolagem
     canvas.configure(yscrollcommand=scrollbar.set)
 
-    # Atualiza a scrollregion
+    #Atualiza a scrollregion
     frame_rolavel.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
+
+    #Vincula o redimensionamento do canvas à centralização do frame
+    canvas.bind("<Configure>", centralizar_frame)
 
     #Áudio
     pygame.mixer.init()
     pygame.mixer.music.load('audio/Cyberpunk.ogg')
     mixer.music.set_volume(0.1)
     mixer.music.play(-1)
+
+def centralizar_frame(event):
+    """Função para centralizar o frame_rolavel no canvas"""
+    canvas_width = canvas.winfo_width()
+    canvas_height = canvas.winfo_height()
+
+    frame_width = frame_rolavel.winfo_width()
+    frame_height = frame_rolavel.winfo_height()
+
+    # Calcula as novas coordenadas para centralizar o frame_rolavel
+    x_central = (canvas_width - frame_width) // 2
+    y_central = (canvas_height - frame_height) // 2
+
+    # Atualiza a posição da "janela" do frame dentro do canvas
+    canvas.coords(window_id, x_central, y_central)
 
 def limpar_frame(frame):
     for widget in frame.winfo_children():
@@ -52,13 +70,17 @@ def imagem_de_fundo(frame, caminho_imagem):
 
     label_imagem = tk.Label(frame, image=imagem_tk_global, bg='black')
     label_imagem.grid(row=0, column=0, sticky='nsew')
+    frame.grid_columnconfigure(0, weight=1)  # Centraliza a coluna da imagem
+    frame.grid_rowconfigure(0, weight=1)  # Centraliza a linha da imagem
 
 def adicionar_texto(frame, texto, row, column=0, fonte_tamanho=11, cor_texto='#ADD8E6', cor_fundo='black'):
     novo_texto = tk.Label(frame, text=texto, wraplength=1000, justify='center' ,
                           fg=cor_texto, bg=cor_fundo, font=('Space Mono', fonte_tamanho, 'italic'),
                           anchor='center')
     novo_texto.grid(column=column, row=row, sticky='nsew')
-    frame.grid_columnconfigure(column, weight=1)
+    
+    frame.grid_columnconfigure(column, weight=1)  # A coluna se expande de forma centralizada
+    frame.grid_rowconfigure(row, weight=1)  # A linha também se expande
     return novo_texto
 
 def criar_botoes(opcoes, linha_inicial, column=0):

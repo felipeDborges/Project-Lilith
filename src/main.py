@@ -517,3 +517,4 @@ def jornal_dia_1 ():
 
 #Iniciar Aplicação
 inicio()
+
