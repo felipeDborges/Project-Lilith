@@ -1,6 +1,7 @@
 from tkinter import *
 from estilo import limpar_frame, adicionar_texto, criar_botoes, imagem_de_fundo, janela, frame_rolavel
 import tkinter as tk
+from inventario import exibir_inventario
 
 atributos_delacruz = {
     'INT': 2,
@@ -66,7 +67,6 @@ def ficha_delacruz():
         limpar_frame(frame_rolavel)
         from chapter_2 import inicio_Capitulo2
 
-
         #Nome e Classe
         adicionar_texto(frame_rolavel, "Nome: Bruno Delacruz", fonte_tamanho=20, cor_texto= '#4682B4', row=0)
         adicionar_texto(frame_rolavel, "Classe: Solo", fonte_tamanho=17, cor_texto='#ADD8E6', row=1)
@@ -122,12 +122,12 @@ def ficha_delacruz():
         adicionar_texto(frame_rolavel, f"Perna D: {armadura_delacruz ['PERNA_D']}", cor_texto='#008080', row=10, column=3)
         adicionar_texto(frame_rolavel, f"Perna E: {armadura_delacruz ['PERNA_E']}", cor_texto='#008080', row=11, column=3)
 
-
         #Botão
         opcoes = [
-                {'texto': "Ficha do Delacruz", 'comando': ficha_delacruz, 'row':20, 'column':1},
+                {'texto': "Inventario", 'comando': exibir_inventario, 'row':20, 'column':1},
                 {'texto': "Voltar", 'comando': inicio_Capitulo2, 'row':20, 'column':2}
         ]
         criar_botoes(opcoes, linha_inicial=1)
     except tk.TclError:
         print("A janela foi fechada")
+

@@ -119,6 +119,8 @@ def bloquear_santiago():
     mensagem1 = ("Você bloqueia Santiago.")
     adicionar_texto(frame_rolavel, mensagem1, row=1)
 
+    adicionar_texto(frame_rolavel, "-----------------------------------------------------------------------------------------------------------", fonte_tamanho=11, cor_texto='black', row=2)
+
     bloquearSantiago = True
 
     #Novo botão
@@ -127,7 +129,7 @@ def bloquear_santiago():
         {'texto': "Ver mensagens de Espinosa", 'comando': mensagens_espinoas},
         {'texto': "Levantar", 'comando': banheiro}
     ]
-    linha_inicial = 2
+    linha_inicial = 3
 
     criar_botoes(opcoes, linha_inicial)
 
@@ -145,6 +147,8 @@ def mensagens_sakura():
     mensagem2 = ("Ele REALMENTE esta desesperado")
     adicionar_texto(frame_rolavel, mensagem2, row=2)
 
+    adicionar_texto(frame_rolavel, "-----------------------------------------------------------------------------------------------------------", fonte_tamanho=11, cor_texto='black', row=3)
+
     if bloquearSantiago == False:
         opcoes = [
             {'texto': "Ver mensagens de Espinosa", 'comando': mensagens_espinoas},
@@ -156,7 +160,7 @@ def mensagens_sakura():
             {'texto': "Ver mensagens de Espinosa", 'comando': mensagens_espinoas},
             {'texto': "Levantar", 'comando': banheiro}
         ]
-    linha_inicial = 3
+    linha_inicial = 4
 
     criar_botoes(opcoes, linha_inicial)
 
@@ -173,6 +177,8 @@ def mensagens_espinoas():
 
     adicionar_texto(frame_rolavel, "NÃO SE ATRASE", fonte_tamanho=15, cor_texto='red', row=2)
 
+    adicionar_texto(frame_rolavel, "-----------------------------------------------------------------------------------------------------------", fonte_tamanho=11, cor_texto='black', row=3)
+
     if bloquearSantiago == False:
         opcoes = [
             {'texto': "Ver mensagens de Sakura", 'comando': mensagens_sakura},
@@ -184,7 +190,7 @@ def mensagens_espinoas():
             {'texto': "Ver mensagens de Sakura", 'comando': mensagens_sakura},
             {'texto': "Levantar", 'comando': banheiro}
         ]
-    linha_inicial = 3
+    linha_inicial = 4
 
     criar_botoes(opcoes, linha_inicial)
 
@@ -360,6 +366,8 @@ def ignorando_supremo():
     mensagem2 = ("Você ainda continua ouvindo a porta batendo.")
     adicionar_texto(frame_rolavel, mensagem2, row=2)
 
+    adicionar_texto(frame_rolavel, "-----------------------------------------------------------------------------------------------------------", fonte_tamanho=11, cor_texto='black', row=3)
+
     if cameraCasa == False:
         opcoes = [
             {'texto': "Abrir a porta", 'comando': abrir_a_porta},
@@ -369,7 +377,7 @@ def ignorando_supremo():
         opcoes = [
             {'texto': "Abrir a porta", 'comando': abrir_a_porta_camera}
     ]
-    linha_inicial = 3
+    linha_inicial = 4
 
     criar_botoes(opcoes, linha_inicial)
 
@@ -481,11 +489,13 @@ def papo_furado ():
 
     adicionar_texto(frame_rolavel, "'Não, só espero não ter que usar metade da minha parte para fugir do pais.'", fonte_tamanho=11, cor_texto='#4682B4', row=5)
 
+    adicionar_texto(frame_rolavel, "-----------------------------------------------------------------------------------------------------------", fonte_tamanho=11, cor_texto='black', row=6)
+
     opcoes = [
             {'texto': "Perguntar a onde fica Pinto Seco", 'comando': localizacao},
             {'texto': "Ler Jornal", 'comando': jornal_dia_1},
     ]
-    linha_inicial = 6
+    linha_inicial = 7
 
     criar_botoes(opcoes, linha_inicial)
 
@@ -517,4 +527,4 @@ def jornal_dia_1 ():
 
 #Iniciar Aplicação
 inicio()
-
+janela.mainloop()
